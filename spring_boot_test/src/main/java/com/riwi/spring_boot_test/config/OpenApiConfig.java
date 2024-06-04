@@ -1,4 +1,4 @@
-package config;
+package com.riwi.spring_boot_test.config;
 
 import org.springframework.context.annotation.Configuration;
 

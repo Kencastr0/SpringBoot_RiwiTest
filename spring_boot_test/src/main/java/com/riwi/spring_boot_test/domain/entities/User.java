@@ -1,4 +1,4 @@
-package com.riwi.domain.entities;
+package com.riwi.spring_boot_test.domain.entities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,5 +43,6 @@ public class User {
     private boolean active;
 
     @OneToMany(mappedBy = "creatorId", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.EAGER)
+    @Builder.Default
     private List<Survey> surveys = new ArrayList<>();
 }
