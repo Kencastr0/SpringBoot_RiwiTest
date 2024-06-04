@@ -1,6 +1,6 @@
 package com.riwi.utils.enums;
 
-public enum UserState {
+public enum QuestionStatus {
     ACTIVE,
     INACTIVE
 }
