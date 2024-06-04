@@ -1,7 +1,4 @@
-package com.riwi.domain.entities;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.riwi.spring_boot_test.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -14,7 +11,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Question {
+public class OptionQuestion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,17 +21,10 @@ public class Question {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String text;
 
-    @Column(length = 50, nullable = false)
-    private String type;
-
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-    @JoinColumn(name = "survey_id")
-    private Survey surveyId;
+    @JoinColumn(name = "question_id")
+    private Question questionId;
 
     @Column(nullable = false)
     private boolean active;
-
-    @OneToMany(mappedBy = "questionId", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.EAGER)
-    private List<OptionQuestion> options = new ArrayList<>();
-
 }

@@ -1,10 +1,9 @@
-package com.riwi.domain.entities;
+package com.riwi.spring_boot_test.domain.entities;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,8 +15,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,10 +39,9 @@ public class Survey {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
-    @CreationTimestamp
-    private Date creationDate;
+    @Builder.Default
+    private LocalDateTime creationDate = LocalDateTime.now();
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinColumn(name = "creator_id")
@@ -55,5 +51,6 @@ public class Survey {
     private boolean active;
 
     @OneToMany(mappedBy = "surveyId", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.EAGER)
+    @Builder.Default
     private List<Question> questions = new ArrayList<>();
 }
