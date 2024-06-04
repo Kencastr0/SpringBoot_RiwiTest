@@ -45,4 +45,9 @@ public class User {
     @OneToMany(mappedBy = "creatorId", cascade = CascadeType.ALL, orphanRemoval = false, fetch = FetchType.EAGER)
     @Builder.Default
     private List<Survey> surveys = new ArrayList<>();
+
+    public void setActive(Object active2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setActive'");
+    }
 }
