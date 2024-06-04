@@ -1,4 +1,4 @@
-package com.riwi.spring_boot_test.api.controllers.dto.request;
+package com.riwi.spring_boot_test.api.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

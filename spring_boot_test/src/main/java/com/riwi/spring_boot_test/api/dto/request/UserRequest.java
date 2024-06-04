@@ -1,4 +1,4 @@
-package com.riwi.spring_boot_test.api.controllers.dto.request;
+package com.riwi.spring_boot_test.api.dto.request;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -24,5 +24,5 @@ public class UserRequest {
     private String password;
 
     @NotNull
-    private String active;
+    private Boolean active;
 }

@@ -1,4 +1,4 @@
-package com.riwi.spring_boot_test.api.controllers.dto.errors;
+package com.riwi.spring_boot_test.api.dto.errors;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,11 +6,14 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-@EqualsAndHashCode(callSuper = true)
+import java.util.List;
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class ErrorResponse extends BaseErrorResponse {
-    private String message;
+@EqualsAndHashCode(callSuper = true)
+public class ErrorsResponse extends BaseErrorResponse {
+    private List<String> errors;
 }

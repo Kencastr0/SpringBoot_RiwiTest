@@ -1,10 +1,8 @@
 package com.riwi.spring_boot_test.infraestructure.services;
 
-import com.riwi.spring_boot_test.infraestructure.abstract_service.CreateReadService;
-import com.riwi.spring_boot_test.infraestructure.abstract_service.UpdateService;
-import com.riwi.spring_boot_test.infraestructure.abstract_service.DeleteService;
-import com.riwi.spring_boot_test.api.controllers.dto.request.UserRequest;
-import com.riwi.spring_boot_test.api.controllers.dto.response.UserResponse;
+import com.riwi.spring_boot_test.infraestructure.abstract_service.IUserService;
+import com.riwi.spring_boot_test.api.dto.request.UserRequest;
+import com.riwi.spring_boot_test.api.dto.response.UserResponse;
 import com.riwi.spring_boot_test.domain.entities.User;
 import com.riwi.spring_boot_test.domain.repositories.UserRepository;
 
@@ -16,9 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class UserService implements CreateReadService<UserRequest, UserResponse, Long>,
-        UpdateService<UserRequest, UserResponse, Long>,
-        DeleteService<Long> {
+public class UserService implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -29,7 +25,7 @@ public class UserService implements CreateReadService<UserRequest, UserResponse,
                 .name(request.getName())
                 .email(request.getEmail())
                 .password(request.getPassword())
-                .active(Boolean.parseBoolean(request.getActive())) // Convert String to boolean
+                .active(request.getActive())
                 .build();
         user = userRepository.save(user);
         return new UserResponse(user);
@@ -55,16 +51,11 @@ public class UserService implements CreateReadService<UserRequest, UserResponse,
             user.setName(request.getName());
             user.setEmail(request.getEmail());
             user.setPassword(request.getPassword());
-            user.setActive(request.getActive());
+            user.isActive();
             user = userRepository.save(user);
             return new UserResponse(user);
         } else {
             throw new RuntimeException("User not found");
         }
-    }
-
-    @Override
-    public void delete(Long id) {
-        userRepository.deleteById(id);
     }
 }

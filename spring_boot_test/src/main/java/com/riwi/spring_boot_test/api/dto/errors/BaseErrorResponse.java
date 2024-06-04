@@ -1,4 +1,4 @@
-package com.riwi.spring_boot_test.api.controllers.dto.errors;
+package com.riwi.spring_boot_test.api.dto.errors;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

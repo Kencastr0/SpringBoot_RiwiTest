@@ -2,8 +2,8 @@ package com.riwi.spring_boot_test.infraestructure.abstract_service;
 
 import java.util.List;
 
-import com.riwi.spring_boot_test.api.controllers.dto.request.OptionFromQuestionRequest;
-import com.riwi.spring_boot_test.api.controllers.dto.request.OptionQuestionRequest;
+import com.riwi.spring_boot_test.api.dto.request.OptionFromQuestionRequest;
+import com.riwi.spring_boot_test.api.dto.request.OptionQuestionRequest;
 
 public interface IOptionQuestionService
 {

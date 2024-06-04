@@ -1,4 +1,4 @@
-package com.riwi.spring_boot_test.api.controllers.dto.response;
+package com.riwi.spring_boot_test.api.dto.response;
 
 import com.riwi.spring_boot_test.domain.entities.User;
 

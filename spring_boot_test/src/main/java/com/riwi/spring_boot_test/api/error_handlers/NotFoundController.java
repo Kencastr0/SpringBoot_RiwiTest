@@ -1,4 +1,4 @@
-package com.riwi.spring_boot_test.api.controllers.error_handlers;
+package com.riwi.spring_boot_test.api.error_handlers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import com.riwi.spring_boot_test.api.controllers.dto.errors.BaseErrorResponse;
-import com.riwi.spring_boot_test.api.controllers.dto.errors.ErrorResponse;
+import com.riwi.spring_boot_test.api.dto.errors.BaseErrorResponse;
+import com.riwi.spring_boot_test.api.dto.errors.ErrorResponse;
 import com.riwi.spring_boot_test.utils.enums.exeptions.IdNotFoundException;
 
 @RestControllerAdvice

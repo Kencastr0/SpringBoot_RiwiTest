@@ -1,4 +1,4 @@
-package com.riwi.spring_boot_test.api.controllers.dto.request;
+package com.riwi.spring_boot_test.api.dto.request;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -9,11 +9,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionUpdate2Request {
+public class QuestionUpdateRequest {
     @NotBlank(message = "Text must not be null")
     private String text;
 
@@ -28,4 +30,6 @@ public class QuestionUpdate2Request {
     @NotBlank(message = "Active cannot be null")
     @Pattern(regexp = "true|false", message = "The type must be true or false")
     private String active;
+
+    private List<OptionFromQuestionRequest> options;
 }

@@ -1,13 +1,15 @@
 package com.riwi.spring_boot_test.api.controllers;
 
-import com.riwi.spring_boot_test.api.controllers.dto.request.UserRequest;
-import com.riwi.spring_boot_test.api.controllers.dto.response.UserResponse;
+import com.riwi.spring_boot_test.api.dto.request.UserRequest;
+import com.riwi.spring_boot_test.api.dto.response.UserResponse;
 import com.riwi.spring_boot_test.infraestructure.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -20,13 +22,17 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest request) {
+    public ResponseEntity<UserResponse> createUser(@Validated @RequestBody UserRequest request) {
         UserResponse userResponse = userService.create(request);
         return ResponseEntity.ok(userResponse);
     }
 
     @GetMapping
-    public ResponseEntity<Page<UserResponse>> getAllUsers(Pageable pageable) {
+    public ResponseEntity<Page<UserResponse>> getAllUsers( @RequestParam(defaultValue = "1") int page,
+    @RequestParam(defaultValue = "10") int size) {
+         Pageable pageable = PageRequest.of(page, size);
+        if (page != 0)
+            pageable = PageRequest.of(page - 1, size);
         Page<UserResponse> users = userService.getAll(pageable);
         return ResponseEntity.ok(users);
     }
@@ -39,15 +45,9 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @RequestBody UserRequest request) {
+    public ResponseEntity<UserResponse> updateUser(@Validated @PathVariable Long id, @RequestBody UserRequest request) {
         UserResponse userResponse = userService.update(id, request);
         return ResponseEntity.ok(userResponse);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        userService.delete(id);
-        return ResponseEntity.noContent().build();
     }
 }
 
